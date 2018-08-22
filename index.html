@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Quiz of Doom!</title>
+</head>
+<body>
+    
+<div class="container">
+    <h1>Quiz of Doom</h1>
+
+    <h2>Score: <span class="score"></span></h2>
+
+    <h2 class="question-header">Question: <span class="question"></span></h2>
+</div>
+    
+<script type="text/javascript">
+
+var questionSpan = document.querySelector(".question");
+var questionHeader = document.querySelector(".question-header");
+var scoreSpan = document.querySelector(".score");
+
+var questions = [
+    {
+        question: "We are on planet earth?",
+        answer: "t"
+    },
+    {
+        question: "The earth is mostly water?",
+        answer: "t"
+    },
+    {
+        question: "The earth is flat?",
+        answer: "f"
+    },
+    {
+        question: "Pluto is a planet?",
+        answer: "f"
+    },
+    {
+        question: "Dormant volcanoes erupt?",
+        answer: "f"
+    },
+    {
+        question: "Land turtles can live over the age of 100?",
+        answer: "t"
+    },
+    {
+        question: "Trees produce oxygen?",
+        answer: "t"
+    },
+    {
+        question: "Dirt is dirty?",
+        answer: "t"
+    },
+    {
+        question: "When painting, black is a color?",
+        answer: "t"
+    },
+    {
+        question: "Elvis is dead?",
+        answer: "f"
+    }
+];
+
+var questionCounter = 0;
+
+var score = 0;
+
+var question = questions[questionCounter].question;
+var answer = questions[questionCounter].answer;
+
+scoreSpan.textContent = score;
+questionSpan.textContent = question;
+
+document.addEventListener("keyup", function (event) {
+    var key = event.key.toLowerCase();
+    
+    if ((key === "t" || key === "f") && questionCounter < questions.length) {
+        console.log("Question:", question);
+        console.log("Answer:", answer);
+        console.log("You pressed:", key);
+    
+        if (key === answer) {
+            alert("COWABUNGA! You got it!");
+            score += 1;
+
+            scoreSpan.textContent = score;
+        } else {
+            alert("Bummer, dude, not what I was looking for...")
+        }
+
+        questionCounter += 1;
+    }     
+    
+    if (questionCounter < questions.length) {
+        question = questions[questionCounter].question;
+        answer = questions[questionCounter].answer;
+        questionSpan.textContent = question;
+    } else {
+        question = `You answered ${score} out of ${questions.length} questions correctly!`;
+        questionHeader.textContent = question;
+    }
+
+});
+
+</script>
+
+</body>
+</html>
